@@ -1,3 +1,4 @@
+<img width="800" height="448" alt="ezgif-529a530163e688a0" src="https://github.com/user-attachments/assets/6c2079e6-bc05-4d03-84d4-b9cc7d175863" />
 # 🇻🇳 Vietnamese Enterprise RAG Engine (FastAPI + Streamlit + ChromaDB)
 
 [![Python 3.10](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
@@ -8,31 +9,8 @@
 
 A **production-ready, decoupled Retrieval-Augmented Generation (RAG) system** engineered for high-accuracy Vietnamese & Multilingual document search and QA. 
 
-Developed by **[Truong Thuan An](https://github.com/truongthuanan)** (Core AI Engineer).
+<img width="800" height="448" alt="ezgif-529a530163e688a0" src="https://github.com/user-attachments/assets/7f488db1-ed1f-462c-9276-10f82a58aa87" />
 
----
-
-## 🏗️ System Architecture
-
-```mermaid
-graph TD
-    User([👤 User Client]) -->|Upload PDF / Ask Query| UI[🖥️ Streamlit Frontend UI]
-    UI -->|RESTful HTTP APIs| API[⚡ FastAPI Backend Server]
-
-    subgraph RAG Core Pipeline
-        API -->|Parse & Load| PDF[📄 PyPDFLoader]
-        PDF -->|Token Text Splitter| Chunks[🧩 Chunks: size 500, overlap 50]
-        Chunks -->|Generate Dense Vectors| Embedding[🧠 BAAI/bge-m3 Model]
-        Embedding -->|Upsert Vectors| VectorDB[(💾 Chroma Vector Store)]
-        
-        API -->|Search Top-K Context| VectorDB
-        VectorDB -->|Retrieved Chunks| PromptEngine[📝 RAG System Prompt]
-        PromptEngine -->|Context + Query| LLM[🤖 Groq Llama-3.1-8B LLM]
-        LLM -->|Grounded Answer| API
-    end
-```
-
----
 
 ## 🌟 Key Technical Highlights
 
@@ -50,60 +28,6 @@ graph TD
 * **Faithfulness:** **98.5%** *(Triệt tiêu ảo giác)*
 * **Answer Relevance:** **95.0%** *(Trả lời đúng trọng tâm)*
 * **Latency:** **< 1.2s** *(Phản hồi toàn luồng)*
-
----
-
-## 🛠️ Project Structure
-
-```
-rag-bot-fastapi/
-├── client/                     # Streamlit Frontend Application
-│   ├── components/             # UI Components (Sidebar, Chat, Inspector)
-│   ├── state/                  # Session State Management
-│   ├── utils/                  # API Clients & Helpers
-│   └── app.py                  # Entry Point
-├── server/                     # FastAPI Backend Microservice
-│   ├── api/                    # REST API Routes & Request Schemas
-│   ├── config/                 # Environment Variables & Model Settings
-│   ├── core/                   # Document Processor, VectorDB, LLM Factory
-│   ├── utils/                  # Logging & System Helpers
-│   └── main.py                 # FastAPI Application Entry
-├── README.md                   # System Documentation
-└── requirements.txt            # Project Dependencies
-```
-
----
-
-## ⚡ Quick Start & Local Setup
-
-### 1. Clone & Environment Setup
-```bash
-git clone https://github.com/truongthuanan/rag-bot-fastapi.git
-cd rag-bot-fastapi
-```
-
-### 2. Configure API Keys
-Create a `.env` file in `server/.env`:
-```env
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-### 3. Launch Backend Server (FastAPI)
-```bash
-cd server
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-```
-
-### 4. Launch Frontend UI (Streamlit)
-Open a new terminal:
-```bash
-cd client
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-Access the application at `http://localhost:8501`.
 
 ---
 
