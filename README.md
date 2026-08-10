@@ -1,5 +1,4 @@
-<img width="800" height="448" alt="ezgif-529a530163e688a0" src="https://github.com/user-attachments/assets/6c2079e6-bc05-4d03-84d4-b9cc7d175863" />
-# 🇻🇳 Vietnamese Enterprise RAG Engine (FastAPI + Streamlit + ChromaDB)
+Vietnamese Enterprise RAG Engine (FastAPI + Streamlit + ChromaDB)
 
 [![Python 3.10](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com/)
