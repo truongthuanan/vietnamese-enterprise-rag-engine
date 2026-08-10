@@ -36,29 +36,20 @@ graph TD
 
 ## 🌟 Key Technical Highlights
 
-1. **Vietnamese & Multilingual Native Embeddings (`BAAI/bge-m3`)**:
-   - Upgraded from standard English embeddings to **BGE-M3 (1024-dimensional dense vectors)**, providing state-of-the-art semantic search accuracy for Vietnamese technical, legal, and financial documents.
-2. **Decoupled Microservice Architecture**:
-   - Clean separation of concerns between **FastAPI Backend (AI Engine & Vector Operations)** and **Streamlit Frontend (UI & Interaction)**.
-3. **Interactive Vector Store Inspector (`🔬 Inspector Mode`)**:
-   - Inspect raw retrieved chunks and cosine similarity scores directly from ChromaDB without invoking the LLM, enabling rapid debugging of **Context Relevance**.
-4. **Token-based Chunking Optimization**:
-   - `TokenTextSplitter` configured with `chunk_size=500` and `chunk_overlap=50` to eliminate token boundary truncation and prevent the *Lost in the Middle* phenomenon.
-5. **Sub-second Inference Latency**:
-   - Integrated with **Groq Llama-3.1-8B-Instant** for lightning-fast TTFT (Time-To-First-Token < 0.5s).
+* **Vietnamese Embedding (`bge-m3`)**: Vector 1024 chiều tối ưu cho văn bản tiếng Việt.
+* **Microservice Architecture**: Tách biệt FastAPI (Backend/AI) và Streamlit (Frontend UI).
+* **Inspector Mode**: Kiểm tra trực tiếp các đoạn chunk và điểm tương đồng trong ChromaDB.
+* **Chunking Optimization**: Cắt đoạn `size=500`, `overlap=50` chống hiện tượng *Lost in the Middle*.
+* **Sub-second Inference**: Tích hợp Groq Llama-3.1-8B phản hồi cực nhanh (TTFT < 0.5s).
 
 ---
 
 ## 📊 RAG Triad Evaluation Benchmarks
 
-Evaluated using the **RAG Triad Framework (LLM-as-a-Judge)**:
-
-| Metric | Score | Diagnostic Meaning & Optimization |
-|---|---|---|
-| **Context Relevance** | **94.2%** | High retrieval precision powered by `bge-m3` & Top-K=4 similarity search. |
-| **Groundedness / Faithfulness** | **98.5%** | Zero hallucinations; strictly constrained by system prompt context rules. |
-| **Answer Relevance** | **95.0%** | Direct, concise answers eliminating off-topic responses. |
-| **End-to-End Latency** | **< 1.2s** | Optimized via FastAPI async handlers & Groq LPU hardware acceleration. |
+* **Context Relevance:** **94.2%** *(Truy xuất đúng tài liệu)*
+* **Faithfulness:** **98.5%** *(Triệt tiêu ảo giác)*
+* **Answer Relevance:** **95.0%** *(Trả lời đúng trọng tâm)*
+* **Latency:** **< 1.2s** *(Phản hồi toàn luồng)*
 
 ---
 
