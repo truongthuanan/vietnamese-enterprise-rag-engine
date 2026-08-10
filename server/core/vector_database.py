@@ -47,7 +47,7 @@ def initialize_empty_vectorstores():
   logger.info("Vectorstore initialization complete.")
 
 async def upsert_vectorstore_from_pdfs(uploaded_files: List[UploadFile], model_provider: str):
-  logger.debug(f"Upserting vectorstore for {model_provider}")
+  logger.debug(f"Creating fresh vectorstore for {model_provider}")
   file_paths = await save_uploaded_file(uploaded_files)
   docs = load_documents_from_paths(file_paths)
   chunks = split_documents_to_chunks(docs)
@@ -56,13 +56,15 @@ async def upsert_vectorstore_from_pdfs(uploaded_files: List[UploadFile], model_p
   persist_path = VECTORSTORE_DIRECTORY[model_provider]
 
   if vectorstore_exists(persist_path):
-    logger.debug("Appending to existing vectorstore...")
-    vectorstore = Chroma(persist_directory=persist_path, embedding_function=embedding)
-    vectorstore.add_documents(chunks)
-    logger.debug(f"Added {len(chunks)} chunks to existing vectorstore.")
-  else:
-    vectorstore = Chroma.from_documents(documents=chunks, embedding=embedding, persist_directory=persist_path)
-    logger.debug(f"Created new vectorstore with {len(chunks)} chunks.")
+    logger.debug("Clearing previous vectorstore data...")
+    try:
+      old_vs = Chroma(persist_directory=persist_path, embedding_function=embedding)
+      old_vs.delete_collection()
+    except Exception as e:
+      logger.warning(f"Could not delete collection via API: {e}")
+
+  vectorstore = Chroma.from_documents(documents=chunks, embedding=embedding, persist_directory=persist_path)
+  logger.debug(f"Created fresh vectorstore with {len(chunks)} chunks.")
 
   return vectorstore
 
