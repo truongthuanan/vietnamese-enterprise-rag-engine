@@ -27,11 +27,3 @@ A **production-ready, decoupled Retrieval-Augmented Generation (RAG) system** en
 * **Faithfulness:** **98.5%** *(Triệt tiêu ảo giác)*
 * **Answer Relevance:** **95.0%** *(Trả lời đúng trọng tâm)*
 * **Latency:** **< 1.2s** *(Phản hồi toàn luồng)*
-
----
-
-## 🤝 Author & License
-
-*   **Author:** Truong Thuan An ([LinkedIn](https://linkedin.com) | [GitHub](https://github.com/truongthuanan))
-*   **Role:** Core AI Engineer (RAG Pipeline, Embedding Optimization, VectorDB & Chain Development)
-*   **License:** MIT License
